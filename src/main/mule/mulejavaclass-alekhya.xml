@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:java="http://www.mulesoft.org/schema/mule/java" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/java http://www.mulesoft.org/schema/mule/java/current/mule-java.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="043095e8-4143-48ec-ab1b-8b2e232eddb7" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="mulejavaclass-alekhyaFlow" doc:id="3076f721-eae4-4e51-b687-6b727353ed0b" >
+		<http:listener doc:name="/mulejavaclass" doc:id="779dadd6-92a9-42ef-bb66-9b0be6719e4e" config-ref="HTTP_Listener_config" path="/mulejavaclass"/>
+		<java:invoke-static doc:name="Invoke static" doc:id="d76018cd-adc3-4c48-b1f2-1e6af74d4419" class="mulejavapackage.mulejavaclasshello" method="getWelcomeMessage()"/>
+		<logger level="INFO" doc:name="Logger" doc:id="cbc11096-9eac-4ec5-9369-b7786eb02724" message="#[payload]"/>
+	</flow>
+</mule>
